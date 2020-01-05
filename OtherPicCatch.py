@@ -13,7 +13,7 @@ index=1
 # 返回路径，文件夹名称，文件名称
 for (path,dirnames,filenames) in os.walk(input_path):
     for filename in filenames:
-        if filename.endswith('.jpg'):
+        if filename.endswith('.bmp'):
             print('being processed picture %s'% str(index))
             img_path=path+'/'+filename
         
