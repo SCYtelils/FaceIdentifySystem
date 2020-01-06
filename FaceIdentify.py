@@ -158,6 +158,7 @@ haar = cv2.CascadeClassifier(r'C:\Users\ASUS\Anaconda3\envs\tensorflow\Lib\site-
 
 camera=cv2.VideoCapture(0)
 flag=1
+trance=1
 
 while True:
     _,img=camera.read()
@@ -177,16 +178,17 @@ while True:
         flag = flag +1
 
         if is_my_face(face):
-            print('检测到主人啦！(@-_-@)')
+            trance += 1
+            print('检测到主人啦！(@-_-@)+%s'%trance)
             cv2.imwrite('test_faces/'+str(flag)+'.jpg',face)
             cv2.rectangle(img,(f_x,f_y),(f_x+f_w,f_y+f_h),(0,0,255),3)
         else:
-            print('没有主人!T_T')
+            print('没有主人!T_T+%s'%trance)
             cv2.rectangle(img,(f_x,f_y),(f_x+f_w,f_y+f_h),(255,0,0),3)
             cv2.imshow('image',img)
             key=cv2.waitKey(30)&0xff
             if key==27:
                 sys.exit(0)
-saver.restore(sess,tf.train.latest_checkpoint('C:/Users/ASUS/git/tmp/'))
+# saver.restore(sess,tf.train.latest_checkpoint('C:/Users/ASUS/git/tmp/'))
 
 sess.close()
