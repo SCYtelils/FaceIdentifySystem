@@ -2,9 +2,9 @@
 import cv2,os
 from PIL import Image 
 
-name = 'name'
+name = 'stu'
 pic_obtain_num = 1000   # 获取照片的数量
-out_path = r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\stuFace'
+out_path = r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\data\stuFace'
 
 
 

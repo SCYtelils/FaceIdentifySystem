@@ -10,10 +10,10 @@ def resize_with_pad(image, height=IMAGE_SIZE, width=IMAGE_SIZE):
     # 计算图片需要补全区域的大小
     def get_padding_size(image):
         h, w, _=image.shape
-        longest_egde = max(h,w)
+        longest_edge = max(h,w)
         top, bottom, left, right = (0,0,0,0)
-        if h < longest_egde:
-            dh = longest_egde - h
+        if h < longest_edge:
+            dh = longest_edge - h
             top = dh // 2
             bottom = dh - top
         elif w < longest_edge:
@@ -35,6 +35,7 @@ def resize_with_pad(image, height=IMAGE_SIZE, width=IMAGE_SIZE):
 images = []
 labels = []
 
+# 获取图片信息，对信息进行标记和预处理
 def traverse_dir(path):
     for file_or_dir in os.listdir(path):
         abs_path = os.path.abspath(os.path.join(path, file_or_dir))
@@ -46,5 +47,18 @@ def traverse_dir(path):
                 image = read_image(abs_path)
                 images.append(image)
                 labels.append(path)
+
+    return images, labels
+
+def read_image(file_path):
+    image = cv2.imread(file_path)
+    image = resize_with_pad(image, IMAGE_SIZE, IMAGE_SIZE)
+
+    return image 
+
+def extract_data(path):
+    images, labels = traverse_dir(path)
+    images = np.array(images)
+    labels = np.array([0 if label.endswith('stuFace') else 1 for label in labels])
 
     return images, labels
