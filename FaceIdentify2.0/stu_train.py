@@ -26,7 +26,7 @@ class Dataset(object):
         self.Y_test = None
     
     def read(self, img_rows=IMAGE_SIZE, img_cols=IMAGE_SIZE, img_channels=3, nb_classes=2):
-        images, labels = extract_data('FaceIdentifySystem\FaceIdentify2.0\data')
+        images, labels = extract_data(r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\data')
         labels = np.reshape(labels, [-1])
         # numpy.reshape
         X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.3, random_state=random.randint(0, 100))
@@ -70,6 +70,7 @@ class Dataset(object):
 class Model(object):
 
     FILE_PATH = 'FaceIdentifySystem\FaceIdentify2.0\model\model.h5'
+    DropoutWeights = [ 0.1, 0.1, 0.1, 0.2 ]
 
     def __init__(self):
         self.model = None
@@ -82,19 +83,19 @@ class Model(object):
         self.model.add(Convolution2D(32, 3, 3))
         self.model.add(Activation('relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Dropout(0.25))
+        self.model.add(Dropout(0.15))
 
         self.model.add(Convolution2D(64, 3, 3, border_mode='same'))
         self.model.add(Activation('relu'))
         self.model.add(Convolution2D(64, 3, 3))
         self.model.add(Activation('relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Dropout(0.25))
+        self.model.add(Dropout(0.15))
 
         self.model.add(Flatten())
         self.model.add(Dense(512))
         self.model.add(Activation('relu'))
-        self.model.add(Dropout(0.5))
+        self.model.add(Dropout(0.35))
         self.model.add(Dense(nb_classes))
         self.model.add(Activation('softmax'))
 
@@ -102,9 +103,10 @@ class Model(object):
 
     def train(self, dataset, batch_size=32, nb_epoch=40, data_augmentation=True):
         # let's train the model using SGD + momentum (how original).
-        sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+        # sgd = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True)
+        adam = optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0)
         self.model.compile(loss='categorical_crossentropy',
-                           optimizer=sgd,
+                           optimizer=adam,
                            metrics=['accuracy'])
         if not data_augmentation:
             print('Not using data augmentation.')

@@ -32,7 +32,7 @@ if __name__ == '__main__':
                     print('检测到目标对象')
                     show_image()
                 else:
-                    print('未检测到目标对象')
+                    print('非目标对象')
 
         # 10ms等待键盘输入
         k = cv2.waitKey(100)
