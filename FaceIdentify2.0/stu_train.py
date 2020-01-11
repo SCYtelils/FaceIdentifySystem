@@ -11,9 +11,11 @@ from keras.layers import Convolution2D, MaxPooling2D
 from keras.optimizers import SGD
 from keras.utils import np_utils
 from keras.models import load_model
+from keras import optimizers
 from keras import backend as K
 
 from stu_input import extract_data, resize_with_pad, IMAGE_SIZE
+from face_dispose import dispose
 
 class Dataset(object):
 
@@ -26,7 +28,7 @@ class Dataset(object):
         self.Y_test = None
     
     def read(self, img_rows=IMAGE_SIZE, img_cols=IMAGE_SIZE, img_channels=3, nb_classes=2):
-        images, labels = extract_data(r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\data')
+        images, labels = extract_data(r'D:\FaceData\data\train')
         labels = np.reshape(labels, [-1])
         # numpy.reshape
         X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.3, random_state=random.randint(0, 100))
@@ -69,7 +71,7 @@ class Dataset(object):
 
 class Model(object):
 
-    FILE_PATH = 'FaceIdentifySystem\FaceIdentify2.0\model\model.h5'
+    FILE_PATH = r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\model\model.h5'
     DropoutWeights = [ 0.1, 0.1, 0.1, 0.2 ]
 
     def __init__(self):

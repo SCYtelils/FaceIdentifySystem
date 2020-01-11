@@ -37,6 +37,7 @@ labels = []
 
 # 获取图片信息，对信息进行标记和预处理
 def traverse_dir(path):
+    
     for file_or_dir in os.listdir(path):
         abs_path = os.path.abspath(os.path.join(path, file_or_dir))
         print(abs_path)

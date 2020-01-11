@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtWidgets
 
 def show_image(image_path='s_gitbash.jpg'):
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     pixmap = QtGui.QPixmap(image_path)
-    screen = QtGui.QLabel()
+    screen = QtWidgets.QLabel()
     screen.setPixmap(pixmap)
     screen.showFullScreen()
     sys.exit(app.exec_())
