@@ -1,7 +1,7 @@
 import sys,os,cv2
 
-input_path='./faceSource'
-output_dir='other_faces'
+input_path=r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\data\otherFace'
+output_dir=r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\data\otherFace'
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
@@ -13,7 +13,7 @@ index=1
 # 返回路径，文件夹名称，文件名称
 for (path,dirnames,filenames) in os.walk(input_path):
     for filename in filenames:
-        if filename.endswith('.bmp'):
+        if filename.endswith('.jpg'):
             print('being processed picture %s'% str(index))
             img_path=path+'/'+filename
         
@@ -28,7 +28,7 @@ for (path,dirnames,filenames) in os.walk(input_path):
             # 统一保存为64*64格式
             face = cv2.resize(face,(64,64))
             cv2.imshow('img',face)
-            cv2.imwrite(output_dir+'/'+str(index)+'.jpg',face)
+            cv2.imwrite(output_dir+'/'+'oth'+str(index)+'.jpg',face)
             index = index + 1
         if index == 10000:
             sys.exit(0)
