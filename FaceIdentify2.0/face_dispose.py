@@ -1,7 +1,7 @@
 import sys,os,cv2
 
 
-
+# 处理不同格式的外源图片
 def dispose():
     input_path=r'D:\FaceData\data\face_source'
     output_dir=r'D:\FaceData\data\train\otherFace'

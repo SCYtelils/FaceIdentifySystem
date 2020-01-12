@@ -2,6 +2,8 @@
 import cv2,os
 from PIL import Image 
 
+# 其他人员头像获取程序
+
 name = 'other'
 pic_obtain_num = 10000   # 获取照片的数量
 out_path = r'D:\FaceData\data\train\otherFace'

@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
-import cv2
+import cv2, os
 
+from datetime import datetime
 from stu_train import Model
 from image_show import show_image
 
@@ -12,7 +13,7 @@ if __name__ == '__main__':
     face_rect=[]
     count = 0
     result = 0
-    while count<50 :
+    while count<10 :
         # while True:
         _, frame = cap.read()
 
@@ -36,10 +37,15 @@ if __name__ == '__main__':
                     result = result + 1
                 else:
                     print('录入失败')
+            count += 1
                 
-        count += 1            
-    if result >= 20:
+                    
+    if result >= 9:
         print('签到成功')
+        f = open(r'C:\Users\ASUS\git\FaceIdentifySystem\FaceIdentify2.0\result.txt','w')
+        time = datetime.now()
+        record = 'regist success :' + str(time)
+        f.write(record)
         # show_image()
     else:
         print('签到失败')
