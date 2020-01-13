@@ -1,4 +1,6 @@
 #-*- coding: UTF-8 -*-
+# author TELILS
+
 import cv2,os
 from PIL import Image 
 

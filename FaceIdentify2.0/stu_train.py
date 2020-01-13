@@ -1,4 +1,6 @@
 # -*- coding: utf-8
+# author TELILS
+
 from __future__ import print_function
 import random
 

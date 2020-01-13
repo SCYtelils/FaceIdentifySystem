@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+# author TELILS
+
 import cv2, os
 
 from datetime import datetime

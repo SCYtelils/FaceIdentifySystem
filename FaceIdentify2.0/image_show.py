@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# author TELILS
+
 import sys
 
 from PyQt5 import QtGui, QtWidgets

@@ -1,4 +1,6 @@
 import sys,os,cv2
+# author TELILS
+
 
 
 # 处理不同格式的外源图片
